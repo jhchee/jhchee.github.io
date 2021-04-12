@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useTheme } from 'next-themes'
+import { ThemeProvider } from 'next-themes'
 
 import "../styles/global.css";
 // used for rendering equations (optional)
@@ -7,19 +9,21 @@ import 'katex/dist/katex.min.css'
 import 'prismjs/themes/prism-tomorrow.css'
 
 function MyApp({ Component, pageProps }) {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const {theme, setTheme} = useTheme()
+  const [mounted, setMounted] = useState(false)
 
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    console.log(theme);
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   return (
-    <div className={theme}>
+    <ThemeProvider attribute="class">
       <div className="min-h-screen bg-white dark:bg-gray-900 dark:text-gray-50">
         <div className="bg-gradient-to-br from-green-400 via-cyan-400 to-blue-200 h-1 w-auto"/>
         <Component {...pageProps} theme={theme} toggleTheme={toggleTheme} />
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 

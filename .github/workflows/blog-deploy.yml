@@ -32,17 +32,28 @@ jobs:
       with:
         version: 2020.8.13
 
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Checkout 🛎️
+      uses: actions/checkout@v2.3.2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+      with:
+        persist-credentials: false
+
+    - name: Collect posts 😺
+      env:
+        NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        NOTION_DB_URL: ${{ secrets.NOTION_DB_URL }}
+      run: |
+        pipenv install -r requirement.txt
+        pipenv run python ./bin/get-blog-posts.py
+
+    - name: Build blog 🔨
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: pipenv install -r ./requirement.txt
-    - run: pipenv run python ./bin/get-blogs.py
-    - run: yarn install --frozen-lockfile
-    - run: yarn build
-    - run: yarn export
-    - run: touch ./out/.nojekyll
+    - run: |
+        yarn install
+        yarn build
+        yarn export
+        touch ./out/.nojekyll
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:

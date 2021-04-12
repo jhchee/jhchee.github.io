@@ -24,9 +24,9 @@ markdown_pages = {}
 
 # perform query
 # aggragations function
-# aggregations = [
-#         {"property": "test", "aggregator": "sum", "id": "total_value"}
-#     ]
+aggregations = [
+        {"property": "test", "aggregator": "sum", "id": "total_value"}
+    ]
 # result = cv.build_query(aggregations=aggregations).execute()
 
 for page in cv.collection.get_rows():
