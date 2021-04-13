@@ -5,6 +5,7 @@ import siteMetadata from '@/data/siteMetadata.json'
 import Footer from "@/components/Footer";
 import Logo from '@/data/logo.svg';
 import headerNavLinks from '@/data/headerNavLinks';
+import ThemeSwitch from "@/components/ThemeSwitch";
 
 interface LayoutProps { // pass across all layout
   home?: boolean;
@@ -52,13 +53,7 @@ const LayoutWrapper: React.FC<LayoutProps> = ({
                 </Link>
               ))}
             </div>
-            <button onClick={toggleTheme}>
-              {theme === "dark" ? (
-                <FaSun className="cursor-pointer hover:text-themeToggler" />
-              ) : (
-                <FaMoon className="cursor-pointer hover:text-themeToggler" />
-              )}
-            </button>
+            <ThemeSwitch />
           </div>
         </div>
       </header>
