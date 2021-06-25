@@ -10,6 +10,7 @@ import { MdxRemote } from "next-mdx-remote/types";
 import allPostInfo from '@/data/search.json'
 
 const postsDirectory = path.join(process.cwd(), "content/post");
+const aboutDirectory = path.join(process.cwd(), "content/about");
 
 export interface PostData {
   readingTime: number;
@@ -154,3 +155,41 @@ export async function getPostData(slug) {
   };
 }
 
+export async function getAboutData() {
+  const fullPath = path.join(aboutDirectory, "about.md");
+console.log(fullPath)
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+
+  const { data, content } = matter(fileContents);
+
+  const mdxSource = await renderToString(content, {
+    components: MDXComponents,
+    mdxOptions: {
+      remarkPlugins: [
+        require('remark-slug'),
+        require('remark-autolink-headings'), // must be included after `remark-slug`.
+        require('remark-code-titles'),
+        require('remark-math'),
+        imgToJsx,
+      ],
+      rehypePlugins: [
+        require('rehype-katex'),
+        require('@mapbox/rehype-prism'),
+        () => {
+          return (tree) => {
+            visit(tree, 'element', (node, index, parent) => {
+              let [token, type] = node.properties.className || []
+              if (token === 'token') {
+                node.properties.className = [tokenClassNames[type]]
+              }
+            })
+          }
+        },
+      ],
+    },
+  })
+
+  return {
+    source: mdxSource,
+  };
+}
