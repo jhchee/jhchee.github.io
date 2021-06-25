@@ -73,6 +73,11 @@ class MyDocument extends Document {
             integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j"
             crossOrigin="anonymous"
           />
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+            crossOrigin="anonymous"
+          />
         </Head>
         <body className="antialiased text-black bg-white">
           <Main />

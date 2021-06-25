@@ -1,12 +1,10 @@
-import { getAllPostSlugs, getSortedPostsData, getPostData, PostData } from "../../lib/posts";
+import { getAllPostSlugs, getPostData, PostData } from "../../lib/posts";
 import Date from "@/components/Date";
 import PageTitle from "@/components/PageTitle";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import Tag from "@/components/Tag";
 import MDXComponents from '@/components/MDXComponents'
 import hydrate from 'next-mdx-remote/hydrate'
-import Link from 'next/link'
-import throttle from 'lodash.throttle'
 import React from 'react'
 
 interface PostProps {

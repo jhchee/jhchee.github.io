@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Link from "next/link";
-import { FaGithub, FaMoon, FaSun, FaTwitter, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import siteMetadata from '@/data/siteMetadata.json'
 import Footer from "@/components/Footer";
 import headerNavLinks from '@/data/headerNavLinks';

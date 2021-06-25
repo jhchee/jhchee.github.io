@@ -10,6 +10,8 @@ from utils import (
     get_text,
     frontmatter_list,
 )
+import uuid
+
 
 class PageExporter:
     def __init__(
@@ -19,12 +21,13 @@ class PageExporter:
         self.page = self.client.get_block(url)  # get page
         self.title = self.page.title  # get page title
         self.markdown_directory = markdown_directory
-        self.file_name = self.__set_filename(self.title)  # custom set file name function
+        self.file_name = self.__set_filename(
+            self.title
+        )  # custom set file name function
         self.__create_file(self.file_name)
         self.file_directory = file_directory
 
         self.md = self.__page_header()  # markdown content, prepend with frontmatter
-        self.file_count = 0
 
     def __create_file(self, file_name):
         file_path = os.path.join(self.markdown_directory, file_name + ".md")
@@ -53,8 +56,11 @@ class PageExporter:
             for chunk in r.iter_content(1024):
                 f.write(chunk)  # write the file
 
-        final_file_name = f"{self.file_name}_{self.file_count}.{ext}"
-        self.file_count += 1
+        # generate uuid for filename
+        unique_id = uuid.uuid4()
+
+        final_file_name = f"{unique_id}.{ext}"
+
         final_file_path = os.path.join(self.file_directory, final_file_name)
 
         os.rename(tmp_file_path, final_file_path)
@@ -73,15 +79,32 @@ class PageExporter:
         header += "---\n"
         return header
 
+    def get_metadata(self):
+        metadata = {}
+        metadata["title"] = self.title
+        metadata["slug"] = slugify(self.title)
+        metadata["date"] = self.__get_published_date()
+        metadata["description"] = self.__get_description()
+        metadata["tags"] = self.__get_tags()
+        metadata["section"] = self.__get_section()
+        return metadata
+
     def __get_tags(self):
         # get the tags
         try:
-            tags = [tag for tag in self.page.tags if tag != '']
+            tags = [tag for tag in self.page.tags if tag != ""]
         except:
             tags = []
-        print(tags)
         return tags
     
+    def __get_section(self):
+        # get the tags
+        try:
+            section = self.page.section
+        except:
+            section = []
+        return section
+
     def __get_description(self):
         try:
             description = self.page.get_property("description")
@@ -95,8 +118,7 @@ class PageExporter:
             formatted_date = date.strftime("%Y-%m-%d")
             return formatted_date
         except:
-            return datetime.today().strftime('%Y-%m-%d')
-        
+            return datetime.today().strftime("%Y-%m-%d")
 
     def __block2md(self, block, params, text_prefix=""):
         result = ""
@@ -189,7 +211,7 @@ class PageExporter:
         row_blocks = collection.get_rows()
         schema = row_blocks[0].schema
         schema.insert(0, schema[-1])
-        schema.pop() # move last column to first (weird behavior of the api) 
+        schema.pop()  # move last column to first (weird behavior of the api)
         for proptitle in schema:
             prop = proptitle["name"]
             if prop == "Name":

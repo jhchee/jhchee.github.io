@@ -4,8 +4,9 @@ date: "2021-06-25"
 description: "Notion blog test 1. 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
 tags:
+- Java
 ---
-![notion-blog-test_0.png](/blog/images/notion-blog-test_0.png)
+![97511e7d-752c-4fa9-8a6d-4dd9cc6737ef.png](/files/97511e7d-752c-4fa9-8a6d-4dd9cc6737ef.png)
 
 # Header 1
 
@@ -38,7 +39,7 @@ list.filter { it.ele > 0 }.map { it.ele * 2 }
 
 ## Image
 
-![notion-blog-test_1.png](/blog/images/notion-blog-test_1.png)
+![ba23e96a-3336-4b4b-928c-f898b961d41e.png](/files/ba23e96a-3336-4b4b-928c-f898b961d41e.png)
 
 $$f(x,y) = x + y\space (equation)$$ 
 

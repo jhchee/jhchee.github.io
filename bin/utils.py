@@ -12,7 +12,7 @@ def clean_directory(directory):
 
 
 def link_format(name, url):
-    return "[" + name + "]" + "(" + "/blog/images/" + url + ")"
+    return "[" + name + "]" + "(" + "/files/" + url + ")"
 
 
 def table_to_markdown(table):

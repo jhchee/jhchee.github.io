@@ -7,12 +7,12 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import MDXComponents from '../components/MDXComponents'
 import imgToJsx from './img_to_jsx'
 import { MdxRemote } from "next-mdx-remote/types";
+import allPostInfo from '@/data/search.json'
 
-const postsDirectory = path.join(process.cwd(), "content/blog");
+const postsDirectory = path.join(process.cwd(), "content/post");
 
 export interface PostData {
   readingTime: number;
-  toc: Array<TOCComponent>;
   slug: string;
   date: string;
   description: string;
@@ -20,40 +20,42 @@ export interface PostData {
   title: string;
   source: MdxRemote.Source;
 }
-export interface TOCComponent {
+
+// without source
+export interface PostInfo {
+  slug: string;
+  date: string;
+  description: string;
+  tags: Array<string>;
   title: string;
-  indentLevel: number;
-  link: string;
-  headerRef: string;
+  section: string;
+}
+
+// search post by its keyword, tags or description
+export function searchPost(allPostsInfo: PostInfo[], keyword: string) {
+  console.log(keyword)
+  const result = allPostsInfo.filter(post =>
+    post.title.toLowerCase().includes(keyword) || 
+    post.tags.some(tag => tag.toLowerCase().includes(keyword)) || 
+    post.description.toLowerCase().includes(keyword)
+  )
+  return result
 }
 
 export function getSortedPostsData() {
-  // Get file names under /posts
-  const fileNames = fs.readdirSync(postsDirectory);
-  var allPostsData: PostData[] = fileNames.map((fileName) => {
-    // Remove ".md" from file name to get id
-    const slug = fileName.replace(/\.md$/, "");
-
-    // Read markdown file as string
-    const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-
-    // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents);
-    
-    // Tags can be null, let's substitute it with empty array
-    if (matterResult.data.tags == null) {
-      matterResult.data.tags = []
-    }
-    // Combine the data with the id
-    return {
-      slug: slug,
-      ...matterResult.data,
-    } as PostData;
-  });
-
   // Sort posts by date
-  return allPostsData.sort((a, b) => {
+  return allPostInfo.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+}
+
+export function getSortedPostsBySection(section: string) {
+  // Sort posts by date
+  return allPostInfo.filter(post => post.section == section).sort((a, b) => {
     if (a.date < b.date) {
       return 1;
     } else {
@@ -63,13 +65,12 @@ export function getSortedPostsData() {
 }
 
 export function getAllPostSlugs() {
-  const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames.map((fileName) => {
+  return allPostInfo.map((post) => {
     return {
       params: {
-        slug: fileName.replace(/\.md$/, ""),
-      },
-    };
+        slug: post.slug
+      }
+    }
   });
 }
 
@@ -132,9 +133,9 @@ export async function getPostData(slug) {
                 const headerRef = "h_" + count;
                 const title = node.children[1].value;
                 node.properties["header-ref"] = headerRef;
-                count ++; 
+                count++;
                 let link = node.children[0].properties.href;
-                toc.push({indentLevel:hType+1, link:link, headerRef: headerRef, title: title});
+                toc.push({ indentLevel: hType + 1, link: link, headerRef: headerRef, title: title });
               }
             })
           }

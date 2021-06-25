@@ -1,49 +1,83 @@
 from notion_py.notion.client import NotionClient
 import os
-import time
-import os
 from exporter import PageExporter
 import json
 from utils import clean_directory
+import json
 
-
-NOTION_TOKEN = "ae7b0231e9722fff0c251bda3f5a9d32bac26f79948ac00c3d69ac7e08d3eda383890e1a5b4d2fc2925cf4d1addce05ca4d3f104debe85b1fdb089ea9b20119e7c1dba1e66c65f3bec839094c0c7"
-NOTION_DB_URL = "https://www.notion.so/vincentchee/472c5d14117e43bf807ec69e69bab9f8?v=f7b25e0d41154f0baca2db26ce9b6ffb"
+NOTION_TOKEN = os.getenv("NOTION_TOKEN")
+BLOG_DATABASE_URL = "https://www.notion.so/vincentchee/472c5d14117e43bf807ec69e69bab9f8?v=f7b25e0d41154f0baca2db26ce9b6ffb"
+ABOUT_PAGE_URL = (
+    "https://www.notion.so/vincentchee/About-2c88052ceff04a4ab9f1e02b4c920bd1"
+)
 
 client = NotionClient(token_v2=NOTION_TOKEN)
-cv = client.get_collection_view(NOTION_DB_URL)
+cv = client.get_collection_view(BLOG_DATABASE_URL)
 
 # store markdown files and images in different directories
-markdown_directory = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "content", "blog"))
-image_directory = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "public", "blog", "images"))
-clean_directory(markdown_directory)
-clean_directory(image_directory)
+post_directory = os.path.normpath(
+    os.path.join(os.path.dirname(__file__), "..", "content", "post")
+)
+file_directory = os.path.normpath(
+    os.path.join(os.path.dirname(__file__), "..", "public", "files")
+)
+clean_directory(post_directory)
+clean_directory(file_directory)
 
 
-markdown_pages = {}
+# Single source of truth json
+ssot_json = []
 
 # perform query
 # The query params can be obtained from inspecting network tab
-filter_params = {
+post_filter = {
+    "operator": "and",
     "filters": [
-      {
-         "property":"_P;{",
-         "filter":{
-            "operator":"checkbox_is",
-            "value":{
-               "type":"exact",
-               "value": True
-            }
-         }
-      }
-   ],
-    "operator": "and"
+        {
+            "property": "_P;{",
+            "filter": {
+                "operator": "checkbox_is",
+                "value": {"type": "exact", "value": True},
+            },
+        }
+    ],
 }
 
-result = cv.build_query(filter=filter_params).execute()
 
-for page in result:
-    print(f"-> Fetching page id {page.id}...")
-    exporter = PageExporter(url=page.id, client=client, markdown_directory=markdown_directory, file_directory=image_directory)
+blog_r = cv.build_query(filter=post_filter).execute()
+
+for page in blog_r:
+    print(f"-> Fetching (post) page id {page.id}...")
+    exporter = PageExporter(
+        url=page.id,
+        client=client,
+        markdown_directory=post_directory,
+        file_directory=file_directory,
+    )
     exporter.page2md()
+    ssot_json.append(exporter.get_metadata())
     exporter.write_file()
+
+
+# about page
+about_directory = os.path.normpath(
+    os.path.join(os.path.dirname(__file__), "..", "content", "about")
+)
+about_page = client.get_block(ABOUT_PAGE_URL)
+print(f"-> Fetching (about) page id {about_page.id}...")
+exporter = PageExporter(
+    url=about_page.id,
+    client=client,
+    markdown_directory=about_directory,
+    file_directory=file_directory,
+)
+exporter.page2md()
+exporter.write_file()
+
+# search ssot
+ssot_directory = os.path.normpath(
+    os.path.join(os.path.dirname(__file__), "..", "data")
+)
+ssot_file = os.path.join(ssot_directory, "search.json")
+with open(ssot_file, "w") as fp:
+    json.dump(ssot_json, fp)

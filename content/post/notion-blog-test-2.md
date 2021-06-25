@@ -1,10 +1,10 @@
 ---
-title: "Notion blog test 4"
+title: "Notion blog test 2"
 date: "2021-06-25"
-description: "Notion blog test 3. 
+description: "Notion blog test 2. 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
 tags:
-- IO
+- Java
 ---
 # Header 1
 
@@ -37,7 +37,7 @@ list.filter { it.ele > 0 }.map { it.ele * 2 }
 
 ## Image
 
-![notion-blog-test-4_0.png](/blog/images/notion-blog-test-4_0.png)
+![37ad579f-d537-4b9a-adc1-2b93b568eedd.png](/files/37ad579f-d537-4b9a-adc1-2b93b568eedd.png)
 
 $$f(x,y) = x + y\space (equation)$$ 
 
