@@ -1,7 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
-const isProduction = process.env.NODE_ENV === "production";
-
 class MyDocument extends Document {
   render() {
     return (
@@ -24,12 +22,6 @@ class MyDocument extends Document {
             sizes="16x16"
             href="/static/favicons/favicon-16x16.png"
           />
-          {/* <link rel="manifest" href="/static/favicons/site.webmanifest" /> */}
-          {/* <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" /> */}
-          {/* <meta name="msapplication-TileColor" content="#2b5797" /> */}
-          {/* <meta name="theme-color" content="#ffffff" /> */}
-          {/* <link rel="alternate" type="application/rss+xml" href="/index.xml" /> */}
-          {/* <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" /> */}
           <link
             rel="preload"
             as="style"
@@ -82,7 +74,7 @@ class MyDocument extends Document {
             crossOrigin="anonymous"
           />
         </Head>
-        <body className="antialiased text-black bg-white dark:bg-gray-900 dark:text-white">
+        <body className="antialiased text-black bg-white">
           <Main />
           <NextScript />
         </body>

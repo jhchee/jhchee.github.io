@@ -7,7 +7,7 @@ export default function Date({ dateString }: { dateString: string }) {
   return (
     <dl>
       <dt className="sr-only">Published on</dt>
-      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+      <dd className="text-base font-medium leading-6 text-gray-500">
         <time dateTime={dateString}>{format(date, "LLLL d, yyyy")}</time>
       </dd>
     </dl>

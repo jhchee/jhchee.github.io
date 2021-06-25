@@ -40,13 +40,18 @@ export function getSortedPostsData() {
 
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
-
+    
+    // Tags can be null, let's substitute it with empty array
+    if (matterResult.data.tags == null) {
+      matterResult.data.tags = []
+    }
     // Combine the data with the id
     return {
       slug: slug,
       ...matterResult.data,
     } as PostData;
   });
+
   // Sort posts by date
   return allPostsData.sort((a, b) => {
     if (a.date < b.date) {

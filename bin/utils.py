@@ -56,8 +56,7 @@ def get_text(block):
 
 def frontmatter_list(title, infos):
     matter = ""
-    if len(infos) != 0:
-        matter += f"{title}:\n"
-        for info in infos:
-            matter += "- " + info + "\n"
+    matter += f"{title}:\n"
+    for info in infos:
+        matter += "- " + info + "\n"
     return matter

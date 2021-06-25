@@ -1,18 +1,15 @@
 ---
 title: "Notion blog test"
-date: "2021-04-12"
+date: "2021-06-25"
 description: "Notion blog test 1. 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
 tags:
-- "Notion"
 ---
-
-
 ![notion-blog-test_0.png](/blog/images/notion-blog-test_0.png)
 
 # Header 1
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor posuere facilisis. Nullam imperdiet libero sit amet mi viverra, at gravida nisi porta. Nunc sollicitudin sit amet augue vel convallis. Donec pretium elementum finibus. Ut scelerisque ultricies arcu ac blandit. Pellentesque luctus ac orci sed bibendum. Morbi interdum ex ante, vel euismod nulla vulputate vel.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor posuere facilisis. Nullam imperdiet libero sit amet mi viverra, at _gravida_ nisi porta. Nunc sollicitudin sit amet augue vel convallis. Donec pretium elementum finibus. Ut scelerisque ultricies arcu ac blandit. Pellentesque luctus ac orci __sed__ bibendum. Morbi [interdum](http://google.com) ex ante, vel euismod nulla vulputate vel.
 
 Pellentesque rhoncus rutrum ante vitae tempor. Ut non aliquet mi. Maecenas vitae vulputate eros, lobortis interdum ligula. Vivamus sed massa a sapien ullamcorper interdum vel vitae nulla. Sed felis lacus, feugiat at orci et, feugiat imperdiet lorem. Donec maximus eros at leo sagittis feugiat. Quisque auctor dapibus augue, id ullamcorper dolor faucibus eget. Donec sed pulvinar urna. Sed sit amet bibendum dolor, sed tincidunt purus.
 

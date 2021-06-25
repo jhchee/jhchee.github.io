@@ -29,15 +29,13 @@ const Footer: React.FC<{}> = ({
                         </a>
                     )}
                 </div>
-                <div className="flex mb-2 space-x-2 text-sm text-gray-500 dark:text-gray-400">
+                <div className="flex mb-2 space-x-2 text-sm text-gray-500">
                     <div>{siteMetadata.author}</div>
                     <div>{`© ${new Date().getFullYear()}`}</div>
                 </div>
             </div>
         </footer>
     )
-
-
 }
 
 export default Footer;

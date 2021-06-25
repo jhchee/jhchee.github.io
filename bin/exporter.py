@@ -74,15 +74,15 @@ class PageExporter:
         return header
 
     def __get_tags(self):
-        # get the tags (from a relational database)
+        # get the tags
         try:
-            tags = [f'"{tag.title}"' for tag in self.page.tags if tag is not None]
+            tags = [tag for tag in self.page.tags if tag != '']
         except:
             tags = []
+        print(tags)
         return tags
     
     def __get_description(self):
-        # get the tags (from a relational database)
         try:
             description = self.page.get_property("description")
         except:
@@ -92,7 +92,6 @@ class PageExporter:
     def __get_published_date(self):
         try:
             date = self.page.get_property("published time")
-            print(date)
             formatted_date = date.strftime("%Y-%m-%d")
             return formatted_date
         except:
