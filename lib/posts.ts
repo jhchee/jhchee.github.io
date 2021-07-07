@@ -36,8 +36,8 @@ export interface PostInfo {
 export function searchPost(allPostsInfo: PostInfo[], keyword: string) {
   console.log(keyword)
   const result = allPostsInfo.filter(post =>
-    post.title.toLowerCase().includes(keyword) || 
-    post.tags.some(tag => tag.toLowerCase().includes(keyword)) || 
+    post.title.toLowerCase().includes(keyword) ||
+    post.tags.some(tag => tag.toLowerCase().includes(keyword)) ||
     post.description.toLowerCase().includes(keyword)
   )
   return result
@@ -112,7 +112,7 @@ export async function getPostData(slug) {
       ],
       rehypePlugins: [
         require('rehype-katex'),
-        require('@mapbox/rehype-prism'),
+        [require('@mapbox/rehype-prism'), { ignoreMissing: true }],
         () => {
           return (tree) => {
             visit(tree, 'element', (node, index, parent) => {
@@ -157,7 +157,7 @@ export async function getPostData(slug) {
 
 export async function getAboutData() {
   const fullPath = path.join(aboutDirectory, "about.md");
-console.log(fullPath)
+
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   const { data, content } = matter(fileContents);

@@ -37,8 +37,8 @@ const Post: React.FC<PostProps> = ({
             </div>
           </div>
         </header>
-        <article className="grid">
-          <div className="pb-8 prose w-4/5 xl:w-3/5 place-self-center">
+        <article className="flex flex-col m-auto place-items-center">
+          <div className="pb-8 prose mt-10">
             {jsx}
           </div>
         </article>
