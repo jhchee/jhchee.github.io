@@ -114,7 +114,7 @@ class PageExporter:
 
     def __get_published_date(self):
         try:
-            date = self.page.get_property("published time")
+            date = self.page.get_property("published time").start
             formatted_date = date.strftime("%Y-%m-%d")
             return formatted_date
         except:

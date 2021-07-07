@@ -10,4 +10,4 @@ This is about me.
 
 I mostly work on this and that.
 
-![d3308920-0b00-448f-8d47-2d2aea12cce5.png](/files/d3308920-0b00-448f-8d47-2d2aea12cce5.png)
+![1c20d2d7-1150-49d1-a57b-0fe4a24629cb.png](/files/1c20d2d7-1150-49d1-a57b-0fe4a24629cb.png)
