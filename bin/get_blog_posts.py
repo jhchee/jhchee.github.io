@@ -33,7 +33,7 @@ clean_directory(directory=content_directory)
 clean_directory(directory=image_directory)
 
 
-search_metadatas = []
+search_metadata_list = []
 
 
 for blog in blogs:
@@ -50,13 +50,14 @@ for blog in blogs:
     metadata["date"] = blog_published_date
     metadata["tags"] = blog_tags
     metadata["section"] = "blog"
-    search_metadatas.append(metadata)
+    search_metadata_list.append(metadata)
 
     print(f"-> Exporting blog id: {blog_id}")
 
+    blog_file_name = slugify(blog_title)
     markdown_exporter(
         block_id=blog_id,
-        output_filename=blog_title,
+        output_filename=blog_file_name,
         output_path=content_directory,
         download=True,
         unzipped=True,
@@ -64,15 +65,16 @@ for blog in blogs:
     blog_front_matter = get_front_matter(
         title=blog_title, published_date=blog_published_date, tags=blog_tags
     )
-    blog_file_directory = f"{content_directory}/{blog_title}.md"
+    blog_file_directory = f"{content_directory}/{blog_file_name}.md"
     inject_front_matter(blog_file_directory, front_matter=blog_front_matter)
 
 
 move_image_file(content_directory, image_directory)
-# search ssot
-ssot_directory = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "data"))
-ssot_file = os.path.join(ssot_directory, "search.json")
-with open(ssot_file, "w") as fp:
-    json.dump(search_metadatas, fp)
+
+# search metadata
+data_directory = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "data"))
+search_metadata_file = os.path.join(data_directory, "search.json")
+with open(search_metadata_file, "w") as file:
+    json.dump(search_metadata_list, file)
 executing_time = round(time.time() - start_time, 2)
 print(f"-> Done exporting blogs in {executing_time}s")
