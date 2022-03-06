@@ -22,7 +22,7 @@ const Home: React.FC<HomeProps> = ({
       <Head>
         <title>{siteMetadata.title}</title>
       </Head>
-      <article className="grid">
+      <article className="grid mt-10">
         <div className="prose prose-lg place-self-center">
           {jsx}
         </div>
