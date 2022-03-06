@@ -90,9 +90,6 @@ export async function getPostData(slug) {
     components: MDXComponents,
     mdxOptions: {
       remarkPlugins: [
-        require('remark-slug'),
-        require('remark-autolink-headings'), // must be included after `remark-slug`.
-        require('remark-code-titles'),
         require('remark-math'),
         imgToJsx,
       ],
@@ -105,24 +102,6 @@ export async function getPostData(slug) {
               let [token, type] = node.properties.className || []
               if (token === 'token') {
                 node.properties.className = [tokenClassNames[type]]
-              }
-            })
-          }
-        },
-        () => {
-          return (tree) => { // this block requires remark autolink headings to work
-            var count = 0;
-            visit(tree, 'element', (node, index, parent) => {
-              let tagName = node.tagName;
-              let hType = headerTag.indexOf(tagName);
-              if (hType != -1) {
-                node.properties.className = "header"
-                const headerRef = "h_" + count;
-                const title = node.children[1].value;
-                node.properties["header-ref"] = headerRef;
-                count++;
-                let link = node.children[0].properties.href;
-                toc.push({ indentLevel: hType + 1, link: link, headerRef: headerRef, title: title });
               }
             })
           }
@@ -152,9 +131,6 @@ export async function getAboutData() {
     components: MDXComponents,
     mdxOptions: {
       remarkPlugins: [
-        require('remark-slug'),
-        require('remark-autolink-headings'), // must be included after `remark-slug`.
-        require('remark-code-titles'),
         require('remark-math'),
         imgToJsx,
       ],
