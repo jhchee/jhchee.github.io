@@ -5,12 +5,12 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   purge: {
     // enabled: false,
-    content: [
-      "./pages/**/*.tsx",
-      "./components/**/*.tsx",
-      "./layouts/**/*.js",
-      "./lib/**/*.js",
-    ],
+    // content: [
+    //   "./pages/**/*.tsx",
+    //   "./components/**/*.tsx",
+    //   "./layouts/**/*.js",
+    //   "./lib/**/*.js",
+    // ],
     options: {
       safelist: ["type"], // [type='checkbox']
     },

@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 import "../styles/global.css";
 // used for rendering equations (optional)
 import "katex/dist/katex.min.css";
