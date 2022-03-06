@@ -20,6 +20,5 @@ yarn-debug.log*
 yarn-error.log*
 
 secrets.txt
-content/about.md
-content/post/*
+content/*
 public/files/*

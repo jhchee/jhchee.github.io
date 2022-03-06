@@ -26,7 +26,6 @@ export interface PostData {
 export interface PostInfo {
   slug: string;
   date: string;
-  description: string;
   tags: Array<string>;
   title: string;
   section: string;
@@ -34,11 +33,9 @@ export interface PostInfo {
 
 // search post by its keyword, tags or description
 export function searchPost(allPostsInfo: PostInfo[], keyword: string) {
-  console.log(keyword)
   const result = allPostsInfo.filter(post =>
     post.title.toLowerCase().includes(keyword) ||
-    post.tags.some(tag => tag.toLowerCase().includes(keyword)) ||
-    post.description.toLowerCase().includes(keyword)
+    post.tags.some(tag => tag.toLowerCase().includes(keyword))
   )
   return result
 }
