@@ -7,12 +7,12 @@ import PostItems from "@/components/PostItems";
 import siteMetadata from '@/data/siteMetadata.json'
 
 interface BlogProps {
-  blogPosts: PostInfo[];
+  allPostsData: PostInfo[];
 }
 
 
 const Blog: React.FC<BlogProps> = ({
-  blogPosts: allPostsData,
+  allPostsData,
 }) => {
 
   const [posts, setPosts] = useState(allPostsData);
@@ -46,10 +46,10 @@ const Blog: React.FC<BlogProps> = ({
 };
 
 export async function getStaticProps() {
-  const blogPosts = getSortedPostsBySection("blog");
+  const allPostsData = getSortedPostsBySection("blog");
   return {
     props: {
-      allPostsData: blogPosts,
+      allPostsData,
     },
   };
 }
