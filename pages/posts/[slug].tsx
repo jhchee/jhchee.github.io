@@ -3,18 +3,15 @@ import Date from "@/components/Date";
 import PageTitle from "@/components/PageTitle";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import Tag from "@/components/Tag";
-import MDXComponents from '@/components/MDXComponents'
-import hydrate from 'next-mdx-remote/hydrate'
-import React from 'react'
+import MDXComponents from "@/components/MDXComponents";
+import hydrate from "next-mdx-remote/hydrate";
+import React from "react";
 
 interface PostProps {
   postData: PostData;
 }
 
-const Post: React.FC<PostProps> = ({
-  postData,
-}) => {
-
+const Post: React.FC<PostProps> = ({ postData }) => {
   const jsx = hydrate(postData.source, {
     components: MDXComponents,
   });
@@ -28,7 +25,11 @@ const Post: React.FC<PostProps> = ({
               <PageTitle>{postData.title}</PageTitle>
             </div>
             <div className="flex flex-wrap space-x-1 justify-center align-middle">
-              <Date dateString={postData.date} /><div className="text-base font-medium leading-6 text-gray-500"> · {Math.round(postData.readingTime)} mins</div>
+              <Date dateString={postData.date} />
+              <div className="text-base font-medium leading-6 text-gray-500">
+                {" "}
+                · {Math.round(postData.readingTime)} mins
+              </div>
             </div>
             <div className="flex-wrap space-x-2">
               {postData.tags.map((tag) => (
@@ -38,7 +39,7 @@ const Post: React.FC<PostProps> = ({
           </div>
         </header>
         <article className="flex flex-col m-auto place-items-center">
-          <div className="pb-8 prose mt-10">
+          <div className="prose prose-xl px-10 mt-10 font-medium tracking-tight">
             {jsx}
           </div>
         </article>
@@ -51,7 +52,7 @@ export async function getStaticPaths() {
   const paths = getAllPostSlugs();
   return {
     paths,
-    fallback: process.env.node_env === 'development', // set fallback to true during development
+    fallback: process.env.node_env === "development", // set fallback to true during development
   };
 }
 

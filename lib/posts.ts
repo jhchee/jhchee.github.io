@@ -73,7 +73,7 @@ const tokenClassNames = {
   string: 'text-code-green',
   function: 'text-code-blue',
   boolean: 'text-code-red',
-  comment: 'text-gray-400 italic',
+  comment: 'text-gray-400',
 };
 
 const headerTag = ['h1', 'h2', 'h3'];
