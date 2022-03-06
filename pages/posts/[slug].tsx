@@ -20,7 +20,7 @@ const Post: React.FC<PostProps> = ({ postData }) => {
     <LayoutWrapper>
       <div className="xl:divide-y xl:divide-gray-200">
         <header className="xl:pb-6">
-          <div className="space-y-1 text-center">
+          <div className="space-y-5 text-center">
             <div>
               <PageTitle>{postData.title}</PageTitle>
             </div>
