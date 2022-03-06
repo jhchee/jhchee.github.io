@@ -40,17 +40,6 @@ export function searchPost(allPostsInfo: PostInfo[], keyword: string) {
   return result
 }
 
-export function getSortedPostsData() {
-  // Sort posts by date
-  return allPostInfo.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
-}
-
 export function getSortedPostsBySection(section: string) {
   // Sort posts by date
   return allPostInfo.filter(post => post.section == section).sort((a, b) => {
