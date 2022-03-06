@@ -1,36 +1,41 @@
 import Head from "next/head";
-import { getSortedPostsData, PostInfo } from "../lib/posts";
+import { getAboutData } from "../lib/posts";
 import LayoutWrapper from "@/components/LayoutWrapper";
-import PostItems from "@/components/PostItems";
+import { MdxRemote } from "next-mdx-remote/types"
 import siteMetadata from '@/data/siteMetadata.json'
+import hydrate from 'next-mdx-remote/hydrate'
+import MDXComponents from '@/components/MDXComponents'
 
 interface HomeProps {
-  allPostsData: PostInfo[];
+  source: MdxRemote.Source;
 }
 
-const NUM_POST_IN_PAGE = 10
-
 const Home: React.FC<HomeProps> = ({
-  allPostsData,
+  source,
 }) => {
+  const jsx = hydrate(source, {
+    components: MDXComponents,
+  });
+
   return (
     <LayoutWrapper home>
       <Head>
         <title>{siteMetadata.title}</title>
       </Head>
-      <section className="divide-y">
-        <h2 className="text-3xl sm:text-5xl font-bold mt-10 sm:mt-12">Latest posts</h2>
-        <PostItems posts={allPostsData.slice(0, NUM_POST_IN_PAGE)}/>
-      </section>
+      <article className="grid">
+        <div className="pb-8 prose w-4/5 xl:w-3/5 place-self-center">
+          {jsx}
+        </div>
+      </article>
     </LayoutWrapper>
   );
 };
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  const aboutData = await getAboutData();
   return {
     props: {
-      allPostsData,
+      source: aboutData.source,
     },
   };
 }

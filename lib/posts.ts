@@ -9,8 +9,7 @@ import imgToJsx from './img_to_jsx'
 import { MdxRemote } from "next-mdx-remote/types";
 import allPostInfo from '@/data/search.json'
 
-const postsDirectory = path.join(process.cwd(), "content/post");
-const aboutDirectory = path.join(process.cwd(), "content/about");
+const contentDirectory = path.join(process.cwd(), "content");
 
 export interface PostData {
   readingTime: number;
@@ -31,8 +30,9 @@ export interface PostInfo {
   section: string;
 }
 
-// search post by its keyword, tags or description
+// search post by its title, tags
 export function searchPost(allPostsInfo: PostInfo[], keyword: string) {
+  keyword = keyword.toLowerCase()
   const result = allPostsInfo.filter(post =>
     post.title.toLowerCase().includes(keyword) ||
     post.tags.some(tag => tag.toLowerCase().includes(keyword))
@@ -91,7 +91,7 @@ const headerTag = ['h1', 'h2', 'h3'];
 
 
 export async function getPostData(slug) {
-  const fullPath = path.join(postsDirectory, `${slug}.md`);
+  const fullPath = path.join(contentDirectory, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   const { data, content } = matter(fileContents);
@@ -153,7 +153,7 @@ export async function getPostData(slug) {
 }
 
 export async function getAboutData() {
-  const fullPath = path.join(aboutDirectory, "about.md");
+  const fullPath = path.join(contentDirectory, "about.md");
 
   const fileContents = fs.readFileSync(fullPath, "utf8");
 

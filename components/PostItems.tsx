@@ -13,7 +13,7 @@ const PostItems: React.FC<PostItemsProps> = ({
     return (
         <ul className="space-y-1 divide-y divide-gray-200 mt-10">
             {!posts.length && 'No posts found.'}
-            {posts.map(({ slug, date, title, tags, description }) => (
+            {posts.map(({ slug, date, title, tags }) => (
                 <li key={slug} className="py-10">
                     <article>
                         <div className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
@@ -33,9 +33,6 @@ const PostItems: React.FC<PostItemsProps> = ({
                                                 <Tag key={tag} tag={tag} />
                                             ))}
                                         </div>
-                                    </div>
-                                    <div className="prose text-gray-500 max-w-none">
-                                        {description}
                                     </div>
                                     <div className="text-base font-medium leading-6">
                                         <Link
