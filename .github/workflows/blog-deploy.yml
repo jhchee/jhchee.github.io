@@ -26,13 +26,6 @@ jobs:
         with:
           python-version: 3.7
 
-      - name: Run Python commands
-        run: |
-          pip install --upgrade pip
-          python3.7 -m venv env
-          source env/bin/activate
-          echo "VIRTUAL ENV:" $VIRTUAL_ENV
-
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
         with:
@@ -42,8 +35,11 @@ jobs:
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         run: |
-          pipenv install -r requirement.txt
-          pipenv run python ./bin/get_posts.py
+          pip install --upgrade pip
+          python3.7 -m venv env
+          pip install -r requirement.txt
+          source env/bin/activate
+          pip run python ./bin/get_posts.py
 
       - name: Build blog 🔨
         uses: actions/setup-node@v1
