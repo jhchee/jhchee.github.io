@@ -39,7 +39,6 @@ jobs:
       - name: Collect posts 😺
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          NOTION_DB_URL: ${{ secrets.NOTION_DB_URL }}
         run: |
           pipenv install -r requirement.txt
           pipenv run python ./bin/get_posts.py
