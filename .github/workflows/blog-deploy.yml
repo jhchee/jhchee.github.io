@@ -39,7 +39,7 @@ jobs:
           python3.7 -m venv env
           pip install -r requirement.txt
           source env/bin/activate
-          pip run python ./bin/get_posts.py
+          python ./bin/get_posts.py
 
       - name: Build blog 🔨
         uses: actions/setup-node@v1
