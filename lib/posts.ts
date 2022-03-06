@@ -52,7 +52,7 @@ export function getSortedPostsBySection(section: string) {
 }
 
 export function getAllPostSlugs() {
-  return allPostInfo.map((post) => {
+  return allPostInfo.filter((post) => post.section == 'blog' || post.section == 'project').map((post) => {
     return {
       params: {
         slug: post.slug
