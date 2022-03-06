@@ -32,14 +32,14 @@ const LayoutWrapper: React.FC<LayoutProps> = ({
               </div>
             </a>
           </Link>
-          <div className="flex items-center space-x-10 md:space-x-7 text-3xl md:text-2xl">
+          <div className="flex items-center space-x-10 md:space-x-7 ">
             <div >
               {headerNavLinks.map((link) => (
                 <Link
                   key={link.title}
                   href={link.href}
                 >
-                  <a className="text-base font-medium text-gray-900 sm:p-4">
+                  <a className="font-medium text-xl text-gray-900 sm:p-4">
                     {link.title}
                   </a>
                 </Link>

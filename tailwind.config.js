@@ -1,31 +1,11 @@
-// const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
-const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  // purge: {
-  //   // enabled: false,
-  //   // content: [
-  //   //   "./pages/**/*.tsx",
-  //   //   "./components/**/*.tsx",
-  //   //   "./layouts/**/*.js",
-  //   //   "./lib/**/*.js",
-  //   // ],
-  //   options: {
-  //     safelist: ["type"], // [type='checkbox']
-  //   },
-  // },
   theme: {
     extend: {
       spacing: {
         "9/16": "56.25%",
       },
-      // lineHeight: {
-      //   11: "2.75rem",
-      //   12: "3rem",
-      //   13: "3.25rem",
-      //   14: "3.5rem",
-      // },
       fontFamily: {
         // sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },
@@ -114,5 +94,5 @@ module.exports = {
       translate: ["group-hover"],
     },
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+  plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
 };
