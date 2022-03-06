@@ -31,7 +31,7 @@ const Post: React.FC<PostProps> = ({ postData }) => {
                 · {Math.round(postData.readingTime)} mins
               </div>
             </div>
-            <div className="flex-wrap space-x-2">
+            <div className="flex-wrap space-x-4">
               {postData.tags.map((tag) => (
                 <Tag key={tag} tag={tag} />
               ))}
