@@ -61,7 +61,6 @@ export function getAllPostSlugs() {
   });
 }
 
-
 const tokenClassNames = {
   tag: 'text-code-red',
   'attr-name': 'text-code-yellow',
@@ -76,16 +75,12 @@ const tokenClassNames = {
   comment: 'text-gray-400',
 };
 
-const headerTag = ['h1', 'h2', 'h3'];
-
-
 export async function getPostData(slug) {
   const fullPath = path.join(contentDirectory, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   const { data, content } = matter(fileContents);
 
-  const toc = [];
   const mdxSource = await renderToString(content, {
     components: MDXComponents,
     mdxOptions: {
@@ -96,22 +91,21 @@ export async function getPostData(slug) {
       rehypePlugins: [
         require('rehype-katex'),
         [require('@mapbox/rehype-prism'), { ignoreMissing: true }],
-        () => {
-          return (tree) => {
-            visit(tree, 'element', (node, index, parent) => {
-              let [token, type] = node.properties.className || []
-              if (token === 'token') {
-                node.properties.className = [tokenClassNames[type]]
-              }
-            })
-          }
-        },
+        // () => {
+        //   return (tree) => {
+        //     visit(tree, 'element', (node, index, parent) => {
+        //       let [token, type] = node.properties.className || []
+        //       if (token === 'token') {
+        //         node.properties.className = [tokenClassNames[type]]
+        //       }
+        //     })
+        //   }
+        // },
       ],
     },
   })
 
   return {
-    toc: toc,
     slug: slug,
     source: mdxSource,
     wordCount: content.split(/\s+/gu).length,

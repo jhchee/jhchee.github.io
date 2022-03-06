@@ -21,3 +21,8 @@ input[type='checkbox'] {
 .task-list-item {
   padding-left: 0 !important;
 }
+
+p img {
+  display:block;
+  margin:auto;
+}
