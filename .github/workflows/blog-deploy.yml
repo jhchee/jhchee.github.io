@@ -37,9 +37,9 @@ jobs:
         run: |
           pip install --upgrade pip
           python3.7 -m venv env
-          pip install -r requirement.txt
+          pip3 install -r requirement.txt
           source env/bin/activate
-          python ./bin/get_posts.py
+          python3.7 ./bin/get_posts.py
 
       - name: Build blog 🔨
         uses: actions/setup-node@v1
