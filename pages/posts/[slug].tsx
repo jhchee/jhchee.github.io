@@ -20,7 +20,7 @@ const Post: React.FC<PostProps> = ({ postData }) => {
     <LayoutWrapper>
       <div className="xl:divide-y xl:divide-gray-200">
         <header className="xl:pb-6">
-          <div className="space-y-5 text-center">
+          <div className="space-y-1 md:space-y-5 text-center">
             <div>
               <PageTitle>{postData.title}</PageTitle>
             </div>
@@ -38,8 +38,8 @@ const Post: React.FC<PostProps> = ({ postData }) => {
             </div>
           </div>
         </header>
-        <article className="flex flex-col m-auto place-items-center">
-          <div className="prose prose-xl px-10 mt-10 font-medium tracking-tight">
+        <article className="w-fit">
+          <div className="prose mt-10 font-medium text-sm md:text-lg tracking-tight mx-auto">
             {jsx}
           </div>
         </article>

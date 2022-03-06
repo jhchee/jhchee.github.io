@@ -1,25 +1,20 @@
 import Head from "next/head";
 import Link from "next/link";
-import siteMetadata from '@/data/siteMetadata.json'
+import siteMetadata from "@/data/siteMetadata.json";
 import Footer from "@/components/Footer";
-import headerNavLinks from '@/data/headerNavLinks';
+import headerNavLinks from "@/data/headerNavLinks";
 
-interface LayoutProps { // pass across all layout
+interface LayoutProps {
+  // pass across all layout
   home?: boolean;
 }
 
-const LayoutWrapper: React.FC<LayoutProps> = ({
-  children,
-  home,
-}) => {
+const LayoutWrapper: React.FC<LayoutProps> = ({ children, home }) => {
   return (
     <div className="max-w-5xl mx-auto px-6 sm:px-8 md:px-6 lg:px-0">
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Vincent Chee Jia Hong Blog"
-        />
+        <meta name="description" content="Vincent Chee Jia Hong Blog" />
         <meta name="og:title" content={siteMetadata.title} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
@@ -27,24 +22,19 @@ const LayoutWrapper: React.FC<LayoutProps> = ({
         <div className="flex items-center justify-between sm:py-12 py-10 ">
           <Link href="/">
             <a className="flex items-center justify-between">
-              <div className="font-bold xl:text-3xl text-xl">
+              <div className="font-bold text-sm md:text-3xl">
                 {siteMetadata.author}
               </div>
             </a>
           </Link>
-          <div className="flex items-center space-x-10 md:space-x-7 ">
-            <div >
-              {headerNavLinks.map((link) => (
-                <Link
-                  key={link.title}
-                  href={link.href}
-                >
-                  <a className="font-medium text-xl text-gray-900 sm:p-4">
-                    {link.title}
-                  </a>
+          <div className="flex space-x-5 md:space-x-10 text-xs md:text-xl">
+            {headerNavLinks.map((link) => (
+              <div>
+                <Link key={link.title} href={link.href}>
+                  <a className="text-basetext-gray-900 sm:p-4">{link.title}</a>
                 </Link>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </header>

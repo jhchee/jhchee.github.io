@@ -23,7 +23,7 @@ const Home: React.FC<HomeProps> = ({
         <title>{siteMetadata.title}</title>
       </Head>
       <article className="grid mt-10">
-        <div className="prose prose-lg place-self-center">
+        <div className="prose text-s md:text-normal md:prose-lg place-self-center tracking-tight">
           {jsx}
         </div>
       </article>
