@@ -9,7 +9,7 @@ const DisqusComments: React.FC<DisqusCommentsProps> = ({ postData }) => {
   const disqusShortname = "vincent-chee-github-blog";
   const disqusConfig = {
     url: `https:jhchee.github.io/posts/${postData.slug}`,
-    identifier: "777777-test", // Single post id
+    identifier: postData.slug, // Single post id
     title: postData.title, // Single post title
   };
   return (
