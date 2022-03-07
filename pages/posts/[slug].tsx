@@ -1,5 +1,6 @@
-import { getAllPostSlugs, getPostData, PostData } from "../../lib/posts";
+import { getAllPostSlugs, getPostData, PostData } from "@/lib/posts";
 import Date from "@/components/Date";
+import DisqusComments from "@/components/DisqusComments";
 import PageTitle from "@/components/PageTitle";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import Tag from "@/components/Tag";
@@ -39,10 +40,11 @@ const Post: React.FC<PostProps> = ({ postData }) => {
           </div>
         </header>
         <article className="w-fit">
-          <div className="prose mt-10 font-medium text-sm md:text-lg tracking-tight mx-auto">
+          <div className="prose my-10 font-medium text-sm md:text-lg tracking-tight mx-auto">
             {jsx}
           </div>
         </article>
+        <DisqusComments postData={postData} />
       </div>
     </LayoutWrapper>
   );

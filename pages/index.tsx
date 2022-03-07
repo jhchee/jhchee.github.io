@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { getAboutData } from "../lib/posts";
+import { getAboutData } from "@/lib/posts";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import { MdxRemote } from "next-mdx-remote/types"
 import siteMetadata from '@/data/siteMetadata.json'
