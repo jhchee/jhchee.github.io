@@ -1,10 +1,11 @@
 from .os_util import prepend_file
 
 
-def get_front_matter(title, section, published_date, tags):  # frontmatter
+def get_front_matter(title, section, generated_id, published_date, tags):  # frontmatter
     header = "---\n"
     header += f'title: "{title}"\n'
     header += f'section: "{section}"\n'
+    header += f'id: "{generated_id}"\n'
     header += f'date: "{published_date}"\n'
     header += format_frontmatter_list("tags", tags)
     header += "---\n"

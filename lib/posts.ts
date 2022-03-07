@@ -18,6 +18,7 @@ export interface PostData {
   description: string;
   tags: Array<string>;
   title: string;
+  id: string;
   source: MdxRemote.Source;
 }
 

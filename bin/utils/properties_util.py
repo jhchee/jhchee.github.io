@@ -18,5 +18,9 @@ def get_section(properties):
     return properties["section"]["select"]["name"]
 
 
+def get_generated_id(properties):
+    return properties["id"]["formula"]["string"]
+
+
 def get_published_date(properties):
     return properties["published date"]["date"]["start"]

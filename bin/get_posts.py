@@ -2,7 +2,7 @@ import os
 from notion2md.exporter import markdown_exporter
 from notion_client import Client
 
-from utils.properties_util import get_tags, get_title, get_published_date, get_section
+from utils.properties_util import get_tags, get_title, get_published_date, get_section, get_generated_id
 from utils.os_util import clean_directory, make_directory, move_image_file
 from utils.markdown_util import inject_front_matter, get_front_matter
 import time
@@ -44,6 +44,7 @@ for post in posts:
     post_tags = get_tags(properties=post_properties)
     post_published_date = get_published_date(properties=post_properties)
     post_section = get_section(properties=post_properties)
+    post_generated_id = get_generated_id(properties=post_properties)
 
     metadata = {}
     metadata["title"] = post_title
@@ -51,6 +52,7 @@ for post in posts:
     metadata["date"] = post_published_date
     metadata["tags"] = post_tags
     metadata["section"] = post_section
+    metadata["id"] = post_generated_id
     search_metadata_list.append(metadata)
 
     print(f"-> Exporting post id: {post_id}")
@@ -66,6 +68,7 @@ for post in posts:
     front_matter = get_front_matter(
         title=post_title,
         section=post_section,
+        generated_id=post_generated_id,
         published_date=post_published_date,
         tags=post_tags,
     )
