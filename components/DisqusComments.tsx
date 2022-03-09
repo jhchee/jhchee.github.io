@@ -1,5 +1,6 @@
 import { DiscussionEmbed } from "disqus-react";
 import { PostData } from "@/lib/posts";
+import siteMetadata from '@/data/siteMetadata.json'
 
 export interface DisqusCommentsProps {
   postData: PostData;
@@ -8,7 +9,7 @@ export interface DisqusCommentsProps {
 const DisqusComments: React.FC<DisqusCommentsProps> = ({ postData }) => {
   const disqusShortname = "vincent-chee-github-blog";
   const disqusConfig = {
-    url: `https://jhchee.github.io/posts/${postData.slug}`,
+    url: `${siteMetadata.domain}/posts/${postData.slug}`,
     identifier: postData.id, // Single post id
     title: postData.title, // Single post title
   };
