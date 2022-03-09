@@ -8,7 +8,7 @@ export interface DisqusCommentsProps {
 const DisqusComments: React.FC<DisqusCommentsProps> = ({ postData }) => {
   const disqusShortname = "vincent-chee-github-blog";
   const disqusConfig = {
-    url: `https:jhchee.github.io/posts/${postData.slug}`,
+    url: `https://jhchee.github.io/posts/${postData.slug}`,
     identifier: postData.id, // Single post id
     title: postData.title, // Single post title
   };
