@@ -15,7 +15,7 @@ This project now supports fetching content from Notion using the official Notion
 ### 1. Install Dependencies
 
 ```bash
-npm install --legacy-peer-deps
+npm install
 ```
 
 ### 2. Set Up Notion Integration

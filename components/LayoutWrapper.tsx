@@ -40,7 +40,7 @@ const LayoutWrapper: React.FC<LayoutProps> = ({ children, home }) => {
           </div>
         </div>
       </header>
-      <main className="mb-auto">{children}</main>
+      <main className="mb-auto w-full">{children}</main>
       <Footer />
     </div>
   );

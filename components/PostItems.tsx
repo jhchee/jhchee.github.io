@@ -9,41 +9,37 @@ export interface PostItemsProps {
 
 const PostItems: React.FC<PostItemsProps> = ({ posts }) => {
   return (
-    <ul className="space-y-1 divide-y divide-gray-200 mt-10">
+    <ul className="divide-y divide-gray-200 mt-10">
       {!posts.length && (
-        <h1 className="sm:w-max max-w-3xl text-xl md:text-2xl font-medium leading-normal mt-5">
+        <h1 className="text-xl md:text-2xl font-medium leading-normal mt-5">
           No posts found.
         </h1>
       )}
       {posts.map(({ slug, date, title, tags }) => (
         <li key={slug} className="py-10">
-          <article>
-            <div className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
-              <Date dateString={date} />
-              <div className="space-y-5 xl:col-span-3">
-                <div className="space-y-5">
-                  <div>
-                    <Link href={`/posts/${slug}`} className="sm:w-min group">
-                      <h1 className="sm:w-max max-w-3xl text-2xl md:text-3xl font-semibold leading-normal mb-1">
-                        {title}
-                      </h1>
-                    </Link>
-                    <div className="flex flex-wrap space-x-4">
-                      {tags.map((tag) => (
-                        <Tag key={tag} tag={tag} />
-                      ))}
-                    </div>
-                  </div>
-                  <div className="text-base font-medium leading-6">
-                    <Link
-                      href={`/posts/${slug}`}
-                      className="text-blue-500 hover:text-blue-600"
-                      aria-label={`Read "${title}"`}
-                    >
-                      Read more &rarr;
-                    </Link>
-                  </div>
+          <article className="w-full space-y-4">
+            <Date dateString={date} />
+            <div className="space-y-5">
+              <div>
+                <Link href={`/posts/${slug}`} className="group">
+                  <h1 className="text-2xl md:text-3xl font-semibold leading-normal mb-1">
+                    {title}
+                  </h1>
+                </Link>
+                <div className="flex flex-wrap gap-4 mt-2">
+                  {tags.map((tag) => (
+                    <Tag key={tag} tag={tag} />
+                  ))}
                 </div>
+              </div>
+              <div className="text-base font-medium">
+                <Link
+                  href={`/posts/${slug}`}
+                  className="text-blue-500 hover:text-blue-600"
+                  aria-label={`Read "${title}"`}
+                >
+                  Read more &rarr;
+                </Link>
               </div>
             </div>
           </article>
