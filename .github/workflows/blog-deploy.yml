@@ -17,14 +17,15 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        # Use a currently supported LTS (18.x) — change to 20.x if you prefer the latest
+        node-version: [18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v2
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.7
+          python-version: '3.11'
 
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
@@ -35,14 +36,14 @@ jobs:
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         run: |
-          python3.7 -m venv env
+          python -m venv env
           source env/bin/activate
-          pip install --upgrade pip
-          pip install -r requirements.txt
-          python3.7 ./bin/get_posts.py
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python ./bin/get_posts.py
 
       - name: Build blog 🔨
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - run: |
