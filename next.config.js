@@ -1,11 +1,11 @@
 module.exports = {
-  output: 'export',
+  output: "export",
   images: {
     unoptimized: true,
   },
-  webpack(config, {isServer}) {
+  webpack(config, { isServer }) {
     if (!isServer) {
-      config.resolve.fallback.fs = false
+      config.resolve.fallback.fs = false;
     }
     config.module.rules.push({
       test: /\.svg?$/,
@@ -13,12 +13,12 @@ module.exports = {
         {
           use: [
             {
-              loader: '@svgr/webpack',
+              loader: "@svgr/webpack",
               options: {
                 prettier: false,
                 svgo: true,
                 svgoConfig: {
-                  plugins: [{removeViewBox: false}],
+                  plugins: [{ removeViewBox: false }],
                 },
                 titleProp: true,
               },
@@ -29,9 +29,9 @@ module.exports = {
           },
         },
       ],
-    })
+    });
 
-    return config
+    return config;
   },
   typescript: {
     // !! WARN !!
