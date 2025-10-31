@@ -23,12 +23,10 @@ const PostItems: React.FC<PostItemsProps> = ({ posts }) => {
               <div className="space-y-5 xl:col-span-3">
                 <div className="space-y-5">
                   <div>
-                    <Link href={`/posts/${slug}`}>
-                      <a className="sm:w-min group">
-                        <h1 className="sm:w-max max-w-3xl text-2xl md:text-3xl font-semibold leading-normal mb-1">
-                          {title}
-                        </h1>
-                      </a>
+                    <Link href={`/posts/${slug}`} className="sm:w-min group">
+                      <h1 className="sm:w-max max-w-3xl text-2xl md:text-3xl font-semibold leading-normal mb-1">
+                        {title}
+                      </h1>
                     </Link>
                     <div className="flex flex-wrap space-x-4">
                       {tags.map((tag) => (

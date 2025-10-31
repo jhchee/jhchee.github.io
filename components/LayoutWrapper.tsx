@@ -21,20 +21,19 @@ const LayoutWrapper: React.FC<LayoutProps> = ({ children, home }) => {
       </Head>
       <header>
         <div className="flex items-center justify-between sm:py-12 py-10 ">
-          <Link href="/">
-            <a className="flex items-center justify-between">
-              <div className="font-bold text-sm md:text-3xl">
-                {siteMetadata.author}
-              </div>
-            </a>
+          <Link href="/" className="flex items-center justify-between">
+            <div className="font-bold text-sm md:text-3xl">
+              {siteMetadata.author}
+            </div>
           </Link>
           <div className="flex space-x-5 md:space-x-10 text-xs md:text-xl">
             {headerNavLinks.map((link) => (
-              <div key="{link}">
-                <Link key={link.title} href={link.href}>
-                  <a className="font-semibold text-basetext-gray-900 sm:p-4">
-                    {link.title}
-                  </a>
+              <div key={link.title}>
+                <Link 
+                  href={link.href}
+                  className="font-semibold text-basetext-gray-900 sm:p-4"
+                >
+                  {link.title}
                 </Link>
               </div>
             ))}

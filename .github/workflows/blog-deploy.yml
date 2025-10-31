@@ -44,7 +44,6 @@ jobs:
       - name: Build blog 🔨
         run: |
           npm run build
-          npm run export
           touch ./out/.nojekyll
         env:
           NODE_ENV: production
