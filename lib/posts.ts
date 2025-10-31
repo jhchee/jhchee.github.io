@@ -2,12 +2,15 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import readingTime from 'reading-time'
-import visit from 'unist-util-visit'
-import renderToString from 'next-mdx-remote/render-to-string'
+import { visit } from 'unist-util-visit'
+import { serialize } from 'next-mdx-remote/serialize'
 import MDXComponents from '../components/MDXComponents'
 import imgToJsx from './img_to_jsx'
-import { MdxRemote } from "next-mdx-remote/types";
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import allPostInfo from '@/data/search.json'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
+import rehypePrism from '@mapbox/rehype-prism'
 
 const contentDirectory = path.join(process.cwd(), "content");
 
@@ -19,7 +22,7 @@ export interface PostData {
   tags: Array<string>;
   title: string;
   id: string;
-  source: MdxRemote.Source;
+  source: MDXRemoteSerializeResult;
 }
 
 // without source
@@ -82,16 +85,15 @@ export async function getPostData(slug) {
 
   const { data, content } = matter(fileContents);
 
-  const mdxSource = await renderToString(content, {
-    components: MDXComponents,
+  const mdxSource = await serialize(content, {
     mdxOptions: {
       remarkPlugins: [
-        require('remark-math'),
+        remarkMath,
         imgToJsx,
       ],
       rehypePlugins: [
-        require('rehype-katex'),
-        [require('@mapbox/rehype-prism'), { ignoreMissing: true }],
+        rehypeKatex,
+        [rehypePrism, { ignoreMissing: true }],
         // () => {
         //   return (tree) => {
         //     visit(tree, 'element', (node, index, parent) => {
@@ -122,16 +124,15 @@ export async function getAboutData() {
 
   const { data, content } = matter(fileContents);
 
-  const mdxSource = await renderToString(content, {
-    components: MDXComponents,
+  const mdxSource = await serialize(content, {
     mdxOptions: {
       remarkPlugins: [
-        require('remark-math'),
+        remarkMath,
         imgToJsx,
       ],
       rehypePlugins: [
-        require('rehype-katex'),
-        require('@mapbox/rehype-prism'),
+        rehypeKatex,
+        rehypePrism,
         () => {
           return (tree) => {
             visit(tree, 'element', (node, index, parent) => {

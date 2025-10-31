@@ -1,6 +1,12 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./layouts/**/*.{js,ts,jsx,tsx}",
+    "./lib/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       spacing: {
@@ -10,12 +16,12 @@ module.exports = {
         // sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        gray: colors.trueGray,
+        gray: colors.gray,
         github: "#333333",
         twitter: "#1da1f2",
         linkedin: "#0a66c2",
         themeToggler: "#2795e9",
-        blue: colors.lightBlue,
+        blue: colors.sky,
         code: {
           green: "#b5f4a5",
           yellow: "#ffe484",
@@ -87,11 +93,6 @@ module.exports = {
           },
         },
       }),
-    },
-  },
-  variants: {
-    extend: {
-      translate: ["group-hover"],
     },
   },
   plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],

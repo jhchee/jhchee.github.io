@@ -5,7 +5,7 @@ import PageTitle from "@/components/PageTitle";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import Tag from "@/components/Tag";
 import MDXComponents from "@/components/MDXComponents";
-import hydrate from "next-mdx-remote/hydrate";
+import { MDXRemote } from "next-mdx-remote";
 import React from "react";
 
 interface PostProps {
@@ -13,10 +13,6 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = ({ postData }) => {
-  const jsx = hydrate(postData.source, {
-    components: MDXComponents,
-  });
-
   return (
     <LayoutWrapper>
       <div className="xl:divide-y xl:divide-gray-200">
@@ -41,7 +37,7 @@ const Post: React.FC<PostProps> = ({ postData }) => {
         </header>
         <article className="w-fit">
           <div className="prose my-10 font-medium text-sm md:text-lg tracking-tight mx-auto">
-            {jsx}
+            <MDXRemote {...postData.source} components={MDXComponents} />
           </div>
         </article>
         <DisqusComments postData={postData} />

@@ -1,22 +1,18 @@
 import Head from "next/head";
 import { getAboutData } from "@/lib/posts";
 import LayoutWrapper from "@/components/LayoutWrapper";
-import { MdxRemote } from "next-mdx-remote/types"
+import { MDXRemoteSerializeResult } from "next-mdx-remote"
 import siteMetadata from '@/data/siteMetadata.json'
-import hydrate from 'next-mdx-remote/hydrate'
+import { MDXRemote } from 'next-mdx-remote'
 import MDXComponents from '@/components/MDXComponents'
 
 interface HomeProps {
-  source: MdxRemote.Source;
+  source: MDXRemoteSerializeResult;
 }
 
 const Home: React.FC<HomeProps> = ({
   source,
 }) => {
-  const jsx = hydrate(source, {
-    components: MDXComponents,
-  });
-
   return (
     <LayoutWrapper home>
       <Head>
@@ -24,7 +20,7 @@ const Home: React.FC<HomeProps> = ({
       </Head>
       <article className="grid mt-10">
         <div className="prose text-s md:text-normal md:prose-lg place-self-center tracking-tight">
-          {jsx}
+          <MDXRemote {...source} components={MDXComponents} />
         </div>
       </article>
     </LayoutWrapper>

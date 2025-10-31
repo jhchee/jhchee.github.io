@@ -7,6 +7,7 @@ import headerNavLinks from "@/data/headerNavLinks";
 interface LayoutProps {
   // pass across all layout
   home?: boolean;
+  children?: React.ReactNode;
 }
 
 const LayoutWrapper: React.FC<LayoutProps> = ({ children, home }) => {
