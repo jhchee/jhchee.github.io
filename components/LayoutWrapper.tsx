@@ -32,7 +32,9 @@ const LayoutWrapper: React.FC<LayoutProps> = ({ children, home }) => {
             {headerNavLinks.map((link) => (
               <div key="{link}">
                 <Link key={link.title} href={link.href}>
-                  <a className="font-semibold text-basetext-gray-900 sm:p-4">{link.title}</a>
+                  <a className="font-semibold text-basetext-gray-900 sm:p-4">
+                    {link.title}
+                  </a>
                 </Link>
               </div>
             ))}

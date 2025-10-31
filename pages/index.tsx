@@ -1,18 +1,16 @@
 import Head from "next/head";
 import { getAboutData } from "@/lib/posts";
 import LayoutWrapper from "@/components/LayoutWrapper";
-import { MDXRemoteSerializeResult } from "next-mdx-remote"
-import siteMetadata from '@/data/siteMetadata.json'
-import { MDXRemote } from 'next-mdx-remote'
-import MDXComponents from '@/components/MDXComponents'
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import siteMetadata from "@/data/siteMetadata.json";
+import { MDXRemote } from "next-mdx-remote";
+import MDXComponents from "@/components/MDXComponents";
 
 interface HomeProps {
   source: MDXRemoteSerializeResult;
 }
 
-const Home: React.FC<HomeProps> = ({
-  source,
-}) => {
+const Home: React.FC<HomeProps> = ({ source }) => {
   return (
     <LayoutWrapper home>
       <Head>
