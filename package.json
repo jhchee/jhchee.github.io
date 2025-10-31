@@ -6,14 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export",
+    "fetch-posts": "node scripts/fetchNotionPosts.js",
+    "setup-notion": "node scripts/setup.js",
+    "check-env": "node scripts/checkEnv.js"
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.6.0",
+    "@notionhq/client": "^2.2.14",
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "^0.4.0",
     "date-fns": "^2.17.0",
     "disqus-react": "^1.1.2",
+    "dotenv": "^16.6.1",
     "gray-matter": "^4.0.2",
     "image-size": "^0.9.5",
     "lodash.throttle": "^4.1.1",
@@ -37,6 +42,7 @@
     "remark-parse": "^9.0.0",
     "remark-react": "^8.0.0",
     "remark-slug": "^6.0.0",
+    "slugify": "^1.6.6",
     "stylelint-config-recommended": "^4.0.0",
     "unist-util-visit": "^2.0.3"
   },
