@@ -35,8 +35,8 @@ const Post: React.FC<PostProps> = ({ postData }) => {
             </div>
           </div>
         </header>
-        <article className="w-fit">
-          <div className="prose my-10 font-medium text-sm md:text-lg tracking-tight mx-auto">
+        <article className="w-full flex justify-center">
+          <div className="prose my-10 font-medium text-sm md:text-lg tracking-tight">
             <MDXRemote {...postData.source} components={MDXComponents} />
           </div>
         </article>
