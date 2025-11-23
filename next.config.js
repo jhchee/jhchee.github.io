@@ -3,6 +3,7 @@ module.exports = {
   images: {
     unoptimized: true,
   },
+  turbopack: {},
   webpack(config, { isServer }) {
     if (!isServer) {
       config.resolve.fallback.fs = false;
