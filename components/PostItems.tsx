@@ -1,7 +1,7 @@
 import Tag from "@/components/Tag";
 import Date from "@/components/Date";
 import Link from "@/components/Link";
-import { PostInfo } from "@/lib/posts";
+import { PostInfo } from "@/lib/searchPosts";
 
 export interface PostItemsProps {
   posts: PostInfo[];

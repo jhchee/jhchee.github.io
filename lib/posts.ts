@@ -32,16 +32,6 @@ export interface PostInfo {
   section: string;
 }
 
-// search post by its title, tags
-export function searchPost(allPostsInfo: PostInfo[], keyword: string) {
-  keyword = keyword.toLowerCase()
-  const result = allPostsInfo.filter(post =>
-    post.title.toLowerCase().includes(keyword) ||
-    post.tags.some(tag => tag.toLowerCase().includes(keyword))
-  )
-  return result
-}
-
 export function getSortedPostsBySection(section: string) {
   // Sort posts by date
   return allPostInfo.filter(post => post.section == section).sort((a, b) => {

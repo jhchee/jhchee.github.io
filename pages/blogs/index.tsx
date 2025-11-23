@@ -1,5 +1,6 @@
 import Head from "next/head";
-import { getSortedPostsBySection, PostInfo, searchPost } from "@/lib/posts";
+import { getSortedPostsBySection } from "@/lib/posts";
+import { PostInfo, searchPost } from "@/lib/searchPosts";
 import React, { useState } from "react";
 
 import LayoutWrapper from "@/components/LayoutWrapper";
