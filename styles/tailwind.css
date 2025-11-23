@@ -10,6 +10,43 @@
   @apply mt-0 rounded-t-none;
 }
 
+/* rehype-pretty-code styles */
+pre {
+  @apply overflow-x-auto rounded-lg p-4 my-4;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+pre code {
+  @apply block;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  word-spacing: normal;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+pre > code {
+  display: grid;
+}
+
+pre code .line {
+  @apply px-4 border-l-2 border-transparent;
+}
+
+pre code .line.line--highlighted {
+  @apply bg-gray-700 bg-opacity-50 border-l-blue-500;
+}
+
+code .word--highlighted {
+  @apply bg-gray-700 bg-opacity-70 rounded px-1;
+}
+
 .task-list-item:before {
   @apply hidden;
 }

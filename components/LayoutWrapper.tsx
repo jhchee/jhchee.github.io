@@ -22,11 +22,11 @@ const LayoutWrapper: React.FC<LayoutProps> = ({ children, home }) => {
       <header>
         <div className="flex items-center justify-between sm:py-12 py-10 ">
           <Link href="/" className="flex items-center justify-between">
-            <div className="font-bold text-sm md:text-3xl">
-              {siteMetadata.author}
+            <div className="font-bold md:text-2xl">
+              About me
             </div>
           </Link>
-          <div className="flex space-x-5 md:space-x-10 text-xs md:text-xl">
+          <div className="flex space-x-5 md:space-x-10 md:text-xl">
             {headerNavLinks.map((link) => (
               <div key={link.title}>
                 <Link

@@ -10,7 +10,7 @@ import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import allPostInfo from '@/data/search.json'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
-import rehypePrism from '@mapbox/rehype-prism'
+import rehypePrettyCode from 'rehype-pretty-code'
 
 const contentDirectory = path.join(process.cwd(), "content");
 
@@ -93,17 +93,10 @@ export async function getPostData(slug) {
       ],
       rehypePlugins: [
         rehypeKatex,
-        [rehypePrism, { ignoreMissing: true }],
-        // () => {
-        //   return (tree) => {
-        //     visit(tree, 'element', (node, index, parent) => {
-        //       let [token, type] = node.properties.className || []
-        //       if (token === 'token') {
-        //         node.properties.className = [tokenClassNames[type]]
-        //       }
-        //     })
-        //   }
-        // },
+        [rehypePrettyCode as any, {
+          theme: 'github-dark',
+          keepBackground: true,
+        }],
       ],
     },
   })
@@ -132,17 +125,10 @@ export async function getAboutData() {
       ],
       rehypePlugins: [
         rehypeKatex,
-        rehypePrism,
-        () => {
-          return (tree) => {
-            visit(tree, 'element', (node, index, parent) => {
-              let [token, type] = node.properties.className || []
-              if (token === 'token') {
-                node.properties.className = [tokenClassNames[type]]
-              }
-            })
-          }
-        },
+        [rehypePrettyCode as any, {
+          theme: 'github-dark',
+          keepBackground: true,
+        }],
       ],
     },
   })
