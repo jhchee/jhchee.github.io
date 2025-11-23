@@ -2,9 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import readingTime from 'reading-time'
-import { visit } from 'unist-util-visit'
 import { serialize } from 'next-mdx-remote/serialize'
-import MDXComponents from '../components/MDXComponents'
 import imgToJsx from './img_to_jsx'
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import allPostInfo from '@/data/search.json'
@@ -64,20 +62,6 @@ export function getAllPostSlugs() {
     }
   });
 }
-
-const tokenClassNames = {
-  tag: 'text-code-red',
-  'attr-name': 'text-code-yellow',
-  'attr-value': 'text-code-green',
-  deleted: 'text-code-red',
-  inserted: 'text-code-green',
-  punctuation: 'text-code-white',
-  keyword: 'text-code-purple',
-  string: 'text-code-green',
-  function: 'text-code-blue',
-  boolean: 'text-code-red',
-  comment: 'text-gray-400',
-};
 
 export async function getPostData(slug) {
   const fullPath = path.join(contentDirectory, `${slug}.md`);
